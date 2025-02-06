@@ -1,6 +1,6 @@
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { GeneratePostAnnotation } from "../../generate-post-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { GENERATE_POST_PROMPT } from "./prompts.js";
 import { formatPrompt, parseGeneration } from "./utils.js";
 import { ALLOWED_TIMES } from "../../constants.js";
@@ -20,11 +20,11 @@ export async function generatePost(
   if (!state.relevantLinks?.length) {
     throw new Error("No relevant links found");
   }
-  const postModel = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0.5,
-  });
 
+  const postModel = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+  });
   const prompt = formatPrompt(state.report, state.relevantLinks[0]);
 
   const reflections = await getReflectionsPrompt(config);

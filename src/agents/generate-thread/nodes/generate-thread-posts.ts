@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import {
   formatAllPostsForPrompt,
   formatBodyPostsForPrompt,
@@ -145,11 +145,10 @@ Once you've completed these steps, provide your tweet inside <tweet> tags. Do no
 export async function generateThreadPosts(
   state: GenerateThreadState,
 ): Promise<Partial<GenerateThreadState>> {
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0, // TODO: Eval different temperatures
-  });
-
+  const model = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+})
   const formattedFirstPostPrompt = FIRST_POST_PROMPT.replace(
     "{THREAD_PLAN}",
     state.threadPlan,

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { getPrompts } from "../../generate-post/prompts/index.js";
 import { VerifyTweetAnnotation } from "../verify-tweet-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 
 const RELEVANCY_SCHEMA = z
   .object({
@@ -33,10 +33,10 @@ You should provide reasoning as to why or why not the content implements your co
 async function verifyGeneralContentIsRelevant(
   content: string,
 ): Promise<boolean> {
-  const relevancyModel = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0,
-  }).withStructuredOutput(RELEVANCY_SCHEMA, {
+  const relevancyModel = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+}).withStructuredOutput(RELEVANCY_SCHEMA, {
     name: "relevancy",
   });
 

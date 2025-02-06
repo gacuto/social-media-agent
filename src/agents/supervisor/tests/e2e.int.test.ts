@@ -32,7 +32,7 @@ ls.describe("SMA - Supervisor - E2E", () => {
       }
       const client = new Client({
         // apiUrl: `http://localhost:${process.env.PORT || "2024"}`,
-        apiUrl: "http://localhost:54367",
+        apiUrl: "http://localhost:3000",
       });
 
       console.log("Before invoking supervisor graph", inputs);

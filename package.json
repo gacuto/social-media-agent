@@ -30,7 +30,7 @@
     "get:scheduled_runs": "yarn tsx scripts/get-scheduled-runs.ts",
     "get:used_links": "yarn tsx scripts/get-all-used-links.ts",
     "graph:delete:run_thread": "yarn tsx scripts/delete-run-thread.ts",
-    "langgraph:up": "langgraph up --watch --port 54367",
+    "langgraph:up": "langgraph up --watch --port 3000",
     "langgraph:in_mem:up": "npx @langchain/langgraph-cli dev"
   },
   "dependencies": {

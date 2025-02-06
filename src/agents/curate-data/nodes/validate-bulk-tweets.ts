@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { CurateDataState } from "../state.js";
 import { z } from "zod";
 import { chunkArray } from "../../utils.js";
@@ -143,10 +143,10 @@ function formatTweets(tweets: TweetV2[]): string {
 export async function validateBulkTweets(
   state: CurateDataState,
 ): Promise<Partial<CurateDataState>> {
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0,
-  }).withStructuredOutput(answerSchema, { name: "answer" });
+  const model = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+}).withStructuredOutput(answerSchema, { name: "answer" });
 
   // Chunk the tweets into groups of 25
   const chunkedTweets = chunkArray(state.rawTweets, 25);

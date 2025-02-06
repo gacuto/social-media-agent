@@ -7,10 +7,11 @@ import { TEXT_ONLY_MODE } from "../src/agents/generate-post/constants.js";
  * This may be modified to generate posts for other content.
  */
 async function invokeGraph() {
-  const link = "https://blog.langchain.dev/customers-appfolio/";
-
+  // const link = "https://blog.langchain.dev/customers-appfolio/";
+  const link = "https://medium.com/@lorevanoudenhove/how-to-build-ai-agents-with-langgraph-a-step-by-step-guide-5d84d9c7e832";
+  // const link = "https://blog.langchain.dev/how-captide-is-redefining-equity-research-with-agentic-workflows-built-on-langgraph-and-langsmith/";
   const client = new Client({
-    apiUrl: process.env.LANGGRAPH_API_URL || "http://localhost:54367",
+    apiUrl: process.env.LANGGRAPH_API_URL || "http://localhost:3000",
   });
 
   const { thread_id } = await client.threads.create();

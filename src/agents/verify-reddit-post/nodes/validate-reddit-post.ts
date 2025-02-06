@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { getPrompts } from "../../generate-post/prompts/index.js";
 import { VerifyRedditGraphState } from "../types.js";
 import { z } from "zod";
@@ -67,10 +67,10 @@ ${c}
 export async function validateRedditPost(
   state: VerifyRedditGraphState,
 ): Promise<Partial<VerifyRedditGraphState>> {
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0,
-  }).withStructuredOutput(RELEVANCY_SCHEMA, {
+  const model =  new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+}).withStructuredOutput(RELEVANCY_SCHEMA, {
     name: "relevancy",
   });
 

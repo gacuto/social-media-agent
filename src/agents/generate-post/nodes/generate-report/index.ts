@@ -1,6 +1,6 @@
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { GeneratePostAnnotation } from "../../generate-post-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { GENERATE_REPORT_PROMPT } from "./prompts.js";
 
 /**
@@ -36,11 +36,10 @@ export async function generateContentReport(
     );
   }
 
-  const reportModel = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
+  const reportModel = new ChatOpenAI({
+    model: "gpt-4o-mini",
     temperature: 0,
   });
-
   const result = await reportModel.invoke([
     {
       role: "system",

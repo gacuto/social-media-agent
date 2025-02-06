@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { toZonedTime } from "date-fns-tz";
 import { DateType } from "../../types.js";
 import { timezoneToUtc } from "../../../utils/date.js";
@@ -43,10 +43,10 @@ export async function updateScheduledDate(
   if (!state.userResponse) {
     throw new Error("No user response found");
   }
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
-    temperature: 0.5,
-  }).withStructuredOutput(scheduleDateSchema, {
+  const model = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0.3,
+}).withStructuredOutput(scheduleDateSchema, {
     name: "scheduleDate",
   });
   const pstDate = toZonedTime(new Date(), "America/Los_Angeles");

@@ -2,7 +2,7 @@
 
 from typing import Any, Dict
 
-from langchain_anthropic import ChatAnthropic
+from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph
 from langgraph.store.base import BaseStore
 from langmem.prompts.looping import (
@@ -39,8 +39,7 @@ async def aput_reflections(store: BaseStore, reflections: str) -> None:
 
 async def reflection(state: State, store: BaseStore) -> Dict[str, Any]:
     """Process reflection and update rules based on user interaction."""
-    model = ChatAnthropic(model="claude-3-5-sonnet-latest", temperature=0)
-
+    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
     current_reflections_prompt = await aget_reflections(store)
 
     update_instructions = """Analyze the following to determine if rules prompt updates are needed:

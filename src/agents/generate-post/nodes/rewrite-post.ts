@@ -1,7 +1,7 @@
 import { Client } from "@langchain/langgraph-sdk";
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { GeneratePostAnnotation } from "../generate-post-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import {
   getReflectionsPrompt,
   REFLECTIONS_PROMPT,
@@ -61,8 +61,8 @@ export async function rewritePost(
     throw new Error("No user response found");
   }
 
-  const rewritePostModel = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
+  const rewritePostModel =new ChatOpenAI({
+    model: "gpt-4o-mini",
     temperature: 0.5,
   });
 
